@@ -13,10 +13,11 @@ func _disable_plugin() -> void:
 
 
 func _enter_tree() -> void:
-	# Initialization of the plugin goes here.
-	pass
-
+	add_custom_type("DialogueHolder", "Node",
+	preload("dialogue_holder/dialogue_holder.gd"), preload("dialogue_holder/icon.svg"))
+	add_custom_type("DialogueDisplay", "RichTextLabel",
+	preload("dialogue_display/dialogue_display.gd"), preload("dialogue_display/icon.svg"))
 
 func _exit_tree() -> void:
-	# Clean-up of the plugin goes here.
+	remove_custom_type("DialogueHolder")
 	pass
