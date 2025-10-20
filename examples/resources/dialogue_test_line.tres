@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DialogueLine" load_steps=3 format=3 uid="uid://dp2xd2cg4wqn0"]
+
+[ext_resource type="Script" uid="uid://dx8ag74k5yunm" path="res://addons/simpledialogue/resource_scripts/dialogue_line.gd" id="1_7wu2b"]
+[ext_resource type="Resource" uid="uid://dcltts2nq0aye" path="res://examples/resources/albert.tres" id="2_qq8e5"]
+
+[resource]
+script = ExtResource("1_7wu2b")
+speaker = ExtResource("2_qq8e5")
+line = "This is a simple text dialogue!"
+metadata/_custom_type_script = "uid://dx8ag74k5yunm"

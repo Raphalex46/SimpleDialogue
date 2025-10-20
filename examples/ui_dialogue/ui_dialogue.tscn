@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://f44c4dlb6gja"]
+
+[ext_resource type="Script" uid="uid://bktfnc8gj2gy6" path="res://addons/simpledialogue/dialogue_holder/dialogue_holder.gd" id="1_skxt8"]
+[ext_resource type="Script" uid="uid://dx8ag74k5yunm" path="res://addons/simpledialogue/resource_scripts/dialogue_line.gd" id="2_ew8lh"]
+[ext_resource type="Resource" uid="uid://dp2xd2cg4wqn0" path="res://examples/resources/dialogue_test_line.tres" id="3_ew8lh"]
+[ext_resource type="Script" uid="uid://bwhumm2clr1j5" path="res://addons/simpledialogue/dialogue_display/dialogue_display.gd" id="4_uxs1l"]
+
+[node name="UIDialogue" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogueHolder" type="Node" parent="." node_paths=PackedStringArray("dialogue_display")]
+script = ExtResource("1_skxt8")
+autoplay = true
+lines = Array[ExtResource("2_ew8lh")]([ExtResource("3_ew8lh")])
+dialogue_display = NodePath("../DialogueDisplay")
+metadata/_custom_type_script = "uid://bktfnc8gj2gy6"
+
+[node name="DialogueDisplay" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_uxs1l")
+metadata/_custom_type_script = "uid://bwhumm2clr1j5"
