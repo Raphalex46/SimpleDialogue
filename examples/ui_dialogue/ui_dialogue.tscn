@@ -1,31 +1,126 @@
-[gd_scene load_steps=5 format=3 uid="uid://f44c4dlb6gja"]
+[gd_scene load_steps=20 format=3 uid="uid://f44c4dlb6gja"]
 
+[ext_resource type="Script" uid="uid://3gf6kqp2bdbf" path="res://examples/ui_dialogue/ui_dialogue.gd" id="1_e2pp2"]
 [ext_resource type="Script" uid="uid://bktfnc8gj2gy6" path="res://addons/simpledialogue/dialogue_holder/dialogue_holder.gd" id="1_skxt8"]
 [ext_resource type="Script" uid="uid://dx8ag74k5yunm" path="res://addons/simpledialogue/resource_scripts/dialogue_line.gd" id="2_ew8lh"]
 [ext_resource type="Resource" uid="uid://dp2xd2cg4wqn0" path="res://examples/resources/dialogue_test_line.tres" id="3_ew8lh"]
 [ext_resource type="Script" uid="uid://bwhumm2clr1j5" path="res://addons/simpledialogue/dialogue_display/dialogue_display.gd" id="4_uxs1l"]
+[ext_resource type="Resource" uid="uid://dcltts2nq0aye" path="res://examples/resources/simple_dialogue.tres" id="4_vkjc5"]
 
-[node name="UIDialogue" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vkjc5"]
+
+[sub_resource type="Curve" id="Curve_vkjc5"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 73.02124, 0, 1, Vector2(1, 73.02124), 73.02124, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_e2pp2"]
+curve = SubResource("Curve_vkjc5")
+
+[sub_resource type="Curve" id="Curve_e2pp2"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8cwhp"]
+curve = SubResource("Curve_e2pp2")
+
+[sub_resource type="Curve" id="Curve_8cwhp"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, -1), 0.0, 2.8, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_uwsy4"]
+curve = SubResource("Curve_8cwhp")
+
+[sub_resource type="Curve" id="Curve_66h6q"]
+_data = [Vector2(0, 1), 0.0, 1.4, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rkefh"]
+curve = SubResource("Curve_66h6q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vkjc5"]
+particle_flag_disable_z = true
+angle_min = 720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_max = 171.62
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = -2.2351742e-06
+radial_accel_min = -11.670002
+radial_accel_max = 8.919997
+damping_min = 7.0950003
+damping_max = 11.213
+damping_curve = SubResource("CurveTexture_e2pp2")
+scale_min = 0.19999999
+scale_max = 2.2
+scale_curve = SubResource("CurveTexture_rkefh")
+scale_over_velocity_min = 627.0
+scale_over_velocity_max = 627.0
+emission_curve = SubResource("CurveTexture_8cwhp")
+hue_variation_min = 0.22999997
+hue_variation_max = 0.22999997
+hue_variation_curve = SubResource("CurveTexture_uwsy4")
+
+[sub_resource type="Resource" id="Resource_e2pp2"]
+script = ExtResource("2_ew8lh")
+speaker = ExtResource("4_vkjc5")
+line = "Great! You can also use callbacks!
+To do so, just check the [b]Use Callback[/b] flag on a dialoge line in the editor, and specify a callback ID. You can then connect the [b]dialogue_callback[/b] signal emitted by the [b]DialogueHolder[/b] node to any function! Just check (or ignore) the identifier passed with the signal and you're good to go!"
+metadata/_custom_type_script = "uid://dx8ag74k5yunm"
+
+[sub_resource type="Resource" id="Resource_8cwhp"]
+script = ExtResource("2_ew8lh")
+speaker = ExtResource("4_vkjc5")
+line = "Now for a little test!
+When you press [b]ui_accept[/b] on this line of dialogue, a particle explosion will take place!"
+use_callback = true
+callback_id = "explosion"
+metadata/_custom_type_script = "uid://dx8ag74k5yunm"
+
+[sub_resource type="Resource" id="Resource_uwsy4"]
+script = ExtResource("2_ew8lh")
+speaker = ExtResource("4_vkjc5")
+line = "Boom!"
+metadata/_custom_type_script = "uid://dx8ag74k5yunm"
+
+[node name="Camera2D" type="Camera2D"]
+limit_enabled = false
+limit_left = 0
+limit_top = 0
+limit_right = 1152
+limit_bottom = 648
+script = ExtResource("1_e2pp2")
+
+[node name="Explosion" type="GPUParticles2D" parent="."]
+z_index = 7
+emitting = false
+amount = 32
+texture = SubResource("PlaceholderTexture2D_vkjc5")
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.52
+process_material = SubResource("ParticleProcessMaterial_vkjc5")
 
 [node name="DialogueHolder" type="Node" parent="." node_paths=PackedStringArray("dialogue_display")]
 script = ExtResource("1_skxt8")
 autoplay = true
-lines = Array[ExtResource("2_ew8lh")]([ExtResource("3_ew8lh")])
-dialogue_display = NodePath("../DialogueDisplay")
+lines = Array[ExtResource("2_ew8lh")]([ExtResource("3_ew8lh"), SubResource("Resource_e2pp2"), SubResource("Resource_8cwhp"), SubResource("Resource_uwsy4")])
+dialogue_display = NodePath("../UI/DialogueDisplay")
 metadata/_custom_type_script = "uid://bktfnc8gj2gy6"
 
-[node name="DialogueDisplay" type="RichTextLabel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="DialogueDisplay" type="RichTextLabel" parent="UI"]
+anchors_preset = -1
+anchor_left = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.3
+offset_left = -0.5
+offset_right = 0.5
 grow_horizontal = 2
-grow_vertical = 2
+bbcode_enabled = true
 script = ExtResource("4_uxs1l")
 metadata/_custom_type_script = "uid://bwhumm2clr1j5"

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://dcltts2nq0aye"]
+
+[ext_resource type="Script" uid="uid://drxhkvqubuevl" path="res://addons/simpledialogue/resource_scripts/character.gd" id="1_4kdiy"]
+
+[resource]
+script = ExtResource("1_4kdiy")
+name = "Simple Dialogue Plugin"
+metadata/_custom_type_script = "uid://drxhkvqubuevl"
