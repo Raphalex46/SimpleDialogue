@@ -1,4 +1,4 @@
-# Simple Dialogue Godot Plugin
+# Simple Dialogue Godot Plugin <img src="https://github.com/user-attachments/assets/66b46c24-829a-4cab-95d7-54da4f7dce7f" width="32" />
 
 A very simple dialogue plugin for my game projects.
 
